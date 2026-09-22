@@ -1,52 +1,29 @@
 # Experiment 01: Network Reconnaissance and Information Gathering
 
-[![Course: MR23-1CS0432](https://img.shields.io/badge/Course-MR23--1CS0432-blue.svg)](file:///d:/Ethical%20Hacking%20Experiments/README.md)
-[![Status: Ready for Kali](https://img.shields.io/badge/Status-Ready%20for%20Kali-orange.svg)](file:///d:/Ethical%20Hacking%20Experiments/EXPERIMENT_STATUS.md)
+**Course:** MR23-1CS0432 — Ethical Hacking Laboratory | **Institution:** Malla Reddy University
 
----
+## Summary
 
-## 📌 Experiment Metadata
+Systematic network reconnaissance from Kali Linux — covering interface identification, gateway discovery, DNS information gathering, host discovery, port/service scanning, and OS fingerprinting.
 
-- **Experiment Number:** `01`
-- **Title:** Network Reconnaissance and Information Gathering
-- **Course Mapping:** `MR23-1CS0432` — Ethical Hacking Laboratory (Malla Reddy University)
-- **Target Platform:** Metasploitable 2 / Isolated VM (`192.168.56.0/24`)
-- **Attacker Platform:** Kali Linux VM (`192.168.56.101`)
+## Evidence Status: ✅ COMPLETE — Authentic Kali Linux execution
 
----
+All screenshots extracted from the original laboratory record (`ilovepdf_merged.pdf`).
 
-## 🎯 Aim & Learning Objectives
+| Step | Command | Result | Screenshot |
+|---|---|---|---|
+| 1 | `ip addr` | eth0 at 10.0.2.15/24 — UP | `01-01-ip-addr-network-interface.jpg` |
+| 2 | `ip route` | Gateway: 10.0.2.2 | `01-02-ip-route-gateway.jpg` |
+| 3 | `ping -c 4 8.8.8.8` | 0% loss, 65.797 ms avg | `01-03-ping-connectivity.jpg` |
+| 4 | `cat /etc/resolv.conf` | DNS: 192.168.137.1 | `01-04-resolv-conf-dns.jpg` |
+| 5 | `nslookup google.com 8.8.4.4` | 6 A + 4 AAAA records | `01-05-nslookup-dns-query.jpg` |
+| 6 | `host google.com` | MX: smtp.google.com | `01-06-host-dns-records.jpg` |
+| 7 | `dig google.com MX` | Priority 10, 27 ms | *(no screenshot — text only)* |
+| 8 | `sudo nmap -sn 10.0.2.0/24` | 3 hosts discovered | `01-07`, `01-08` |
+| 9 | `sudo nmap -sS -sV 10.0.2.2` | 135, 445, 5432 open | `01-09-nmap-service-scan.jpg` |
+| 10 | `sudo nmap -sC -sV -p 135,445,5432 10.0.2.2` | SMB signing REQUIRED | *(text only)* |
+| 11 | `sudo nmap -O -p 135,445,5432 10.0.2.2` | OS inconclusive (NAT bridge) | `01-10`, `01-11` |
 
-### Aim
-To perform systematic passive and active network reconnaissance and information gathering against an authorized target in an isolated laboratory environment using standard security analysis tools.
+## Report
 
-### Learning Objectives
-1. Understand the distinction between **Passive Reconnaissance** (OSINT, DNS, WHOIS) and **Active Reconnaissance** (Ping Sweeps, Port Probes).
-2. Learn DNS record structure (A, AAAA, MX, NS, TXT, PTR) and WHOIS database querying mechanics.
-3. Master host discovery methodologies using ICMP, ARP, and TCP ACK/SYN probes in Nmap.
-4. Capture and document verifiable reconnaissance evidence following academic non-fabrication standards.
-
----
-
-## 📂 Directory Layout
-
-```text
-experiment-01-network-reconnaissance/
-├── README.md         # Experiment summary and quickstart
-├── THEORY.md         # Textbook-grade theoretical foundations & methodology
-├── PROCEDURE.md      # Detailed step-by-step practical laboratory procedure
-├── VIVA.md           # 10+ Viva Voce exam questions and detailed answers
-├── commands/         # Command scripts and CLI templates (.gitkeep)
-├── outputs/          # Raw stdout/stderr terminal log captures (.gitkeep)
-├── screenshots/      # Verified screenshot image files (.gitkeep)
-└── reports/          # Experiment lab reports (.gitkeep)
-```
-
----
-
-## 🚨 Execution Notice
-
-> [!NOTE]
-> **WINDOWS PREPARATION COMPLETED — READY FOR KALI EXECUTION**
-> 
-> The documentation, theory, procedure, command templates, and viva questions for Experiment 01 are fully prepared. Practical execution must be performed inside Kali Linux against an isolated Metasploitable VM.
+📄 [Experiment-01-Final-Report.pdf](reports/Experiment-01-Final-Report.pdf)

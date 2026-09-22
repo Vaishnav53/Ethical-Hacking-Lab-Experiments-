@@ -1,0 +1,29 @@
+kali@kali:~$ nslookup google.com 8.8.4.4
+Server:         8.8.4.4
+Address:        8.8.4.4#53
+
+Non-authoritative answer:
+Name:   google.com
+Address: 142.251.106.113
+Name:   google.com
+Address: 142.251.106.101
+Name:   google.com
+Address: 142.251.106.139
+Name:   google.com
+Address: 142.251.106.138
+Name:   google.com
+Address: 142.251.106.100
+Name:   google.com
+Address: 142.251.106.102
+Name:   google.com
+Address: 2404:6800:4000:1010::8b
+Name:   google.com
+Address: 2404:6800:4000:1010::66
+Name:   google.com
+Address: 2404:6800:4000:1010::64
+Name:   google.com
+Address: 2404:6800:4000:1010::65
+
+OBSERVATION: DNS server 8.8.4.4 responded; 6 IPv4 (A) records and 4 IPv6 (AAAA) records returned;
+             Non-authoritative response (recursive resolver)
+RESULT: DNS resolution for google.com performed successfully via 8.8.4.4

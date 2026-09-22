@@ -1,0 +1,17 @@
+kali@kali:~$ host google.com
+google.com has address 142.251.106.101
+google.com has address 142.251.106.138
+google.com has address 142.251.106.139
+google.com has address 142.251.106.100
+google.com has address 142.251.106.102
+google.com has address 142.251.106.113
+google.com has IPv6 address 2404:6800:4000:1010::65
+google.com has IPv6 address 2404:6800:4000:1010::64
+google.com has IPv6 address 2404:6800:4000:1010::66
+google.com has IPv6 address 2404:6800:4000:1010::8b
+google.com mail is handled by 10 smtp.google.com.
+google.com has HTTP service bindings 1 . alpn="h2,h3"
+
+OBSERVATION: 6 IPv4 addresses; 4 IPv6 addresses; MX: smtp.google.com (priority 10);
+             HTTP service binding shows HTTP/2 and HTTP/3 support
+RESULT: DNS host records gathered — confirms A, AAAA, MX, and HTTPS service records

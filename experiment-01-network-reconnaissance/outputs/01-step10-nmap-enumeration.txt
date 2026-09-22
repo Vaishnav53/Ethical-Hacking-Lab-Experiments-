@@ -1,0 +1,24 @@
+kali@kali:~$ sudo nmap -sC -sV -p 135,445,5432 10.0.2.2
+Starting Nmap 7.94 ( https://nmap.org )
+Nmap scan report for 10.0.2.2
+Host is up (0.00028s latency).
+
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+445/tcp  open  microsoft-ds?
+| smb2-security-mode:
+|   3.1.1:
+|_    Message signing enabled and required
+| smb2-time:
+|   date: 2026-09-02T10:xx:xx
+|_  start_date: N/A
+5432/tcp open  postgresql    PostgreSQL DB
+MAC Address: 52:55:0A:00:02:02 (QEMU virtual NIC)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: ~3s
+
+OBSERVATION: SMB 3.1.1 confirmed; Message signing ENABLED and REQUIRED (security hardening present);
+             Clock skew ~3s; OS identified as Windows
+RESULT: Service enumeration adds SMB signing policy and clock skew to reconnaissance profile

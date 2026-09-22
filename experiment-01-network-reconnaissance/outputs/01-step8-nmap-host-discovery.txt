@@ -1,0 +1,14 @@
+kali@kali:~$ sudo nmap -sn 10.0.2.0/24
+Starting Nmap 7.94 ( https://nmap.org )
+Nmap scan report for 10.0.2.2
+Host is up (0.00023s latency).
+MAC Address: 52:55:0A:00:02:02 (QEMU virtual NIC)
+Nmap scan report for 10.0.2.3
+Host is up (0.00028s latency).
+MAC Address: 52:55:0A:00:02:03 (QEMU virtual NIC)
+Nmap scan report for 10.0.2.15
+Host is up.
+Nmap done: 256 IP addresses (3 hosts up) scanned in 2.17 seconds
+
+OBSERVATION: 3 hosts identified — 10.0.2.2 (QEMU NAT gateway), 10.0.2.3 (QEMU DNS/NTP), 10.0.2.15 (Kali Linux)
+RESULT: Local 10.0.2.0/24 network enumerated; 3 active hosts discovered

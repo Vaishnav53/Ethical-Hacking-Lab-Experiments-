@@ -1,0 +1,15 @@
+kali@kali:~$ sudo nmap -sS -sV 10.0.2.2
+Starting Nmap 7.94 ( https://nmap.org )
+Nmap scan report for 10.0.2.2
+Host is up (0.00031s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+445/tcp  open  microsoft-ds?
+5432/tcp open  postgresql    PostgreSQL DB
+MAC Address: 52:55:0A:00:02:02 (QEMU virtual NIC)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+OBSERVATION: 997 ports filtered; 3 open TCP ports: 135/msrpc, 445/microsoft-ds, 5432/postgresql
+             Host inferred as Windows from service signatures
+RESULT: Port and service discovery successful — 3 services identified on 10.0.2.2

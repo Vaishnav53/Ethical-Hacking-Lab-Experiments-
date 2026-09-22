@@ -1,0 +1,21 @@
+kali@kali:~$ sudo nmap -O -p 135,445,5432 10.0.2.2
+Starting Nmap 7.94 ( https://nmap.org )
+Nmap scan report for 10.0.2.2
+Host is up (0.00031s latency).
+
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+445/tcp  open  microsoft-ds
+5432/tcp open  postgresql
+MAC Address: 52:55:0A:00:02:02 (QEMU virtual NIC)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: AT&T embedded gateway (95%), Oracle VirtualBox Slirp NAT bridge (90%),
+  QEMU user-mode network gateway (89%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 1 hop
+
+OBSERVATION: OS detection attempted; returned probabilistic guesses only (95% AT&T gateway,
+             90% VirtualBox Slirp, 89% QEMU). No exact OS match due to virtualization/NAT
+             and insufficient open/closed ports.
+             NOTE: OS detection was INCONCLUSIVE. We do NOT claim a definitive OS from this scan.
+RESULT: OS fingerprinting attempted — exact match not possible due to virtual NAT infrastructure

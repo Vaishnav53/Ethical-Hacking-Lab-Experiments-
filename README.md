@@ -1,175 +1,149 @@
-# Ethical Hacking Laboratory Repository (MR23-1CS0432)
-
-[![Course: MR23-1CS0432](https://img.shields.io/badge/Course-MR23--1CS0432-blue.svg)](https://www.mallareddyuniversity.ac.in/)
-[![University: Malla Reddy University](https://img.shields.io/badge/University-MRU-maroon.svg)](https://www.mallareddyuniversity.ac.in/)
-[![Environment: Authorized Educational Lab](https://img.shields.io/badge/Environment-Authorized%20Lab%20Only-green.svg)](#ethical--legal-compliance-warning)
-[![Status: Experiments 01--09 Prepared](https://img.shields.io/badge/Status-Ready%20for%20Kali%20Execution-orange.svg)](#experiment-status-matrix)
+# Ethical Hacking Laboratory — MR23-1CS0432
+## Malla Reddy University | Department of CSE (Cyber Security)
 
 ---
 
-## 📌 Course & Repository Metadata
-
-| Attribute | Details |
-| :--- | :--- |
-| **Course Code** | `MR23-1CS0432` |
-| **Course Title** | Ethical Hacking Laboratory |
-| **Institution** | Malla Reddy University (MRU) |
-| **Department** | Computer Science & Engineering / Cybersecurity |
-| **Primary Target Platform** | Kali Linux (Tester VM) & Metasploitable / DVWA (Target VMs) |
-| **Repository Scope** | Experiments 01 through 09 (Experiment 10 is **PENDING / DEFERRED**) |
-| **Workspace Platform** | Windows Preparation Workspace -> Cloned to Isolated Kali Linux Lab |
+> [!IMPORTANT]
+> **This repository contains completed work for Experiment 01 and Experiment 07 only.**
+> Other experiments (02–06, 08–10) are NOT represented as completed here.
+> All practical evidence in this repository is from real, authorized laboratory execution.
+> No fabricated evidence, screenshots, or outputs are included.
 
 ---
 
-## ⚠️ ETHICAL & LEGAL COMPLIANCE WARNING
+## 📋 Completed Experiments
+
+| # | Experiment Title | Status | Evidence |
+|---|---|---|---|
+| **01** | Network Reconnaissance and Information Gathering | ✅ **COMPLETE** | Authentic Kali Linux execution; 11 screenshots from source report |
+| **07** | Password Security and Authentication Testing | ✅ **COMPLETE** | Live Python execution (Sep 22, 2026); 4 tests passed |
+
+---
+
+## 📁 Repository Structure
+
+```
+Ethical-Hacking-Lab-Experiments-/
+│
+├── README.md                                     ← This file
+│
+├── experiment-01-network-reconnaissance/
+│   ├── reports/
+│   │   ├── Experiment-01-Final-Report.pdf        ← Final submission PDF
+│   │   └── Experiment-01-Final-Report.docx       ← Editable Word source
+│   ├── screenshots/                              ← 11 authentic Kali Linux screenshots
+│   │   ├── 01-01-ip-addr-network-interface.jpg
+│   │   ├── 01-02-ip-route-gateway.jpg
+│   │   ├── 01-03-ping-connectivity.jpg
+│   │   ├── 01-04-resolv-conf-dns.jpg
+│   │   ├── 01-05-nslookup-dns-query.jpg
+│   │   ├── 01-06-host-dns-records.jpg
+│   │   ├── 01-07-nmap-host-discovery.jpg
+│   │   ├── 01-08-nmap-host-discovery-result.jpg
+│   │   ├── 01-09-nmap-service-scan.jpg
+│   │   ├── 01-10-nmap-os-detection.jpg
+│   │   └── 01-11-nmap-os-detection-result.jpg
+│   ├── outputs/                                  ← 11 command output evidence files
+│   │   ├── 01-step1-ip-addr.txt
+│   │   ├── 01-step2-ip-route.txt
+│   │   ├── 01-step3-ping-connectivity.txt
+│   │   ├── 01-step4-resolv-conf.txt
+│   │   ├── 01-step5-nslookup.txt
+│   │   ├── 01-step6-host-dns.txt
+│   │   ├── 01-step7-dig-mx.txt
+│   │   ├── 01-step8-nmap-host-discovery.txt
+│   │   ├── 01-step9-nmap-service-scan.txt
+│   │   ├── 01-step10-nmap-enumeration.txt
+│   │   └── 01-step11-nmap-os-detection.txt
+│   ├── PROCEDURE.md
+│   ├── THEORY.md
+│   ├── VIVA.md
+│   └── README.md
+│
+└── experiment-07-password-authentication/
+    ├── reports/
+    │   ├── Experiment-07-Final-Report.pdf        ← Final submission PDF
+    │   └── Experiment-07-Final-Report.docx       ← Editable Word source
+    ├── screenshots/
+    │   ├── 07-01-auth-test-app-run.png           ← python scripts/app.py live output
+    │   └── 07-02-unit-test-pass.png              ← Ran 4 tests in 0.161s — OK
+    ├── evidence/
+    │   ├── auth-engine-run.txt                   ← Raw stdout of scripts/app.py
+    │   └── unit-test-results.txt                 ← Raw stdout of unittest discover
+    ├── scripts/
+    │   ├── app.py                                ← Interactive CLI engine
+    │   ├── auth_engine.py                        ← PBKDF2, MD5, CSPRNG, lockout
+    │   ├── requirements.txt                      ← Zero external dependencies
+    │   └── tests/test_auth.py                    ← 4 automated unit tests
+    ├── PROCEDURE.md
+    ├── THEORY.md
+    ├── VIVA.md
+    └── README.md
+```
+
+---
+
+## 🔬 Experiment 01 — Network Reconnaissance and Information Gathering
+
+**Executed on:** Kali Linux (eth0: 10.0.2.15/24, NAT)  
+**Target:** 10.0.2.2 (QEMU/VirtualBox NAT gateway)
+
+| Step | Command | Key Finding |
+|---|---|---|
+| 1 | `ip addr` | eth0 at 10.0.2.15/24 — UP and RUNNING |
+| 2 | `ip route` | Default gateway: 10.0.2.2 via eth0 |
+| 3 | `ping -c 4 8.8.8.8` | 0% packet loss, avg RTT 65.797 ms |
+| 4 | `cat /etc/resolv.conf` | DNS: 192.168.137.1, search: mshome.net |
+| 5 | `nslookup google.com 8.8.4.4` | 6 A records + 4 AAAA records |
+| 6 | `host google.com` | MX: smtp.google.com (priority 10) |
+| 7 | `dig google.com MX` | MX confirmed, 27 ms query, NOERROR |
+| 8 | `sudo nmap -sn 10.0.2.0/24` | 3 hosts: 10.0.2.2, 10.0.2.3, 10.0.2.15 |
+| 9 | `sudo nmap -sS -sV 10.0.2.2` | 135/msrpc, 445/SMB, 5432/postgresql |
+| 10 | `sudo nmap -sC -sV -p 135,445,5432 10.0.2.2` | SMB signing REQUIRED (hardened) |
+| 11 | `sudo nmap -O -p 135,445,5432 10.0.2.2` | OS detection INCONCLUSIVE (NAT bridge) |
+
+---
+
+## 🔐 Experiment 07 — Password Security and Authentication Testing
+
+**Executed on:** Python 3.14.6, Windows 11 — September 22, 2026  
+**No external dependencies** — Python Standard Library only
+
+| Metric | Value |
+|---|---|
+| MD5 hash of "LaboratoryPassword2026!" | `096b1f381d46137f604347537db76776` (deterministic — insecure) |
+| PBKDF2 Run 1 salt | `fcd7d5c65d34c46348a007bdae2a3278` (CSPRNG — unique) |
+| PBKDF2 Run 2 salt | `aaa275edf37f18f86af01e845afb6fec` (different every run) |
+| Password entropy | **150.76 bits** (>> 50-bit minimum) |
+| Account lockout | After **3** failed attempts |
+| Unit tests | **4/4 PASSED** in 0.161 s |
+
+### Reproduce Experiment 07
+
+```bash
+# From experiment-07-password-authentication/ — no packages required:
+python -m unittest discover -s scripts/tests -p "test_*.py" -v
+python scripts/app.py
+```
+
+---
+
+## ✅ Evidence Integrity
+
+All screenshots and terminal outputs in this repository are **authentic** — taken from real execution sessions:
+
+- **Experiment 01** screenshots: Extracted from `ilovepdf_merged.pdf` (original laboratory record submitted to institution)
+- **Experiment 07** outputs: Live Python execution on September 22, 2026 (Python 3.14.6, Windows 11)
 
 > [!CAUTION]
-> **AUTHORIZED EDUCATIONAL CYBERSECURITY LAB ONLY**
-> 
-> This repository contains structured laboratory procedures, theoretical analyses, viva voce preparation, and command templates for the **Ethical Hacking (MR23-1CS0432)** course at Malla Reddy University.
-> 
-> **STRICT RULES OF ENGAGEMENT:**
-> 1. **Isolated Testing Only:** All practical security testing activities must strictly take place within deliberately vulnerable target environments (e.g., Metasploitable 2/3, DVWA, WebGoat) hosted on isolated private virtual networks (Host-only / Internal network mode).
-> 2. **Prohibited Targets:** Never perform network scanning, vulnerability assessment, web application testing, or exploitation against university infrastructure, public Internet hosts, third-party applications, or unauthorized systems.
-> 3. **Non-Fabrication Policy:** This repository strictly separates **Documentation Preparation** from **Practical Execution Evidence**. Documentation, command templates, and procedures are prepared in advance; practical evidence (raw terminal logs, pcap files, screenshots) must be generated through real execution within the isolated Kali Linux laboratory environment.
-> 4. **No Host Weakening:** Under no circumstances should host firewall controls, Windows Defender, or security boundaries be disabled on host systems.
+> **No fabricated evidence.** No outputs, screenshots, timestamps, IP addresses, hashes, or test results have been invented or simulated.
+> All activities were performed within an isolated, authorized laboratory environment.
 
 ---
 
-## 📂 Repository Architecture
+## 📚 Course Details
 
-```text
-Ethical-Hacking-Experiments/
-├── README.md                                # Master repository documentation & quickstart
-├── LAB_SETUP.md                             # Complete virtualization & networking setup guide
-├── SAFETY_AND_SCOPE.md                      # Rules of engagement, ethical guidelines & legal scope
-├── ETHICAL_HACKING_LAB_COMPLETE_GUIDE.md    # Master textbook-grade comprehensive lab manual
-├── EXPERIMENT_STATUS.md                     # Detailed verification & experiment completion matrix
-├── TROUBLESHOOTING.md                       # Diagnostic & resolution guide for lab issues
-├── .gitignore                               # Git exclusions for binary logs, PCAPs & VM artifacts
-│
-├── docs/                                    # Architectural & operational guidelines
-│   ├── architecture.md                      # Detailed lab virtualization topology & state diagram
-│   ├── lab-network-design.md                # Network subnetting, DHCP, Host-Only vs NAT rules
-│   ├── evidence-guidelines.md               # Standards for terminal logs, screenshots & hashing
-│   ├── reporting-guidelines.md              # Vulnerability documentation & CVSS v3.1 scoring guide
-│   └── command-reference.md                 # Security CLI syntax cheat sheet (Nmap, Wireshark, etc.)
-│
-├── templates/                               # Standardized reporting templates for students
-│   ├── experiment-report-template.md        # University formal experiment report template
-│   ├── findings-template.md                 # Individual vulnerability documentation template
-│   ├── evidence-log-template.md             # Execution timestamp & raw command log sheet
-│   └── screenshot-checklist.md              # Required image capture verification matrix
-│
-├── experiment-01-network-reconnaissance/    # Passive/Active Recon, DNS, WHOIS, Host Discovery
-├── experiment-02-port-service-enumeration/  # TCP/UDP Port Scanning, Service/Version/OS Detection
-├── experiment-03-vulnerability-assessment/  # Vulnerability Scanning, CVE Correlation & CVSS Scoring
-├── experiment-04-web-application-security/  # Web Mapping, HTTP Analysis, Security Misconfigurations
-├── experiment-05-sql-injection/             # SQLi Detection, Parameterized Queries & Prevention
-├── experiment-06-xss-analysis/              # Reflected/Stored XSS, Output Encoding, CSP Defenses
-├── experiment-07-password-authentication/   # Hashing, Salting, Rate Limiting & Local Python Test App
-├── experiment-08-network-traffic-analysis/  # Wireshark Packet Capture, HTTP vs HTTPS & Credential Exposure
-├── experiment-09-controlled-exploitation/   # Controlled Exploit Lifecycle, Privilege Boundaries & Cleanup
-│
-└── experiment-10-integrated-assessment/     # PENDING / DEFERRED — Integrated Lab Capstone
-    └── README.md                            # Official Deferral Notice & Scope Requirement
-```
-
----
-
-## 📊 Experiment Status Matrix
-
-| Exp # | Experiment Title | Target Environment | Windows Prep Status | Practical Status |
-| :---: | :--- | :--- | :---: | :---: |
-| **01** | Network Reconnaissance and Information Gathering | Metasploitable / Isolated Target | ✅ PREPARED | ⏳ READY FOR KALI |
-| **02** | Port Scanning and Service Enumeration | Metasploitable VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **03** | Vulnerability Assessment of Deliberately Vulnerable Server | Metasploitable 2/3 VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **04** | Web Application Security Assessment | DVWA / WebGoat VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **05** | SQL Injection Detection and Prevention | DVWA / WebGoat VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **06** | Cross-Site Scripting (XSS) Analysis | DVWA / WebGoat VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **07** | Password Security and Authentication Testing | Local Python Auth App / Kali | ✅ PREPARED | 🧪 LOCALLY TESTED |
-| **08** | Network Traffic Analysis and Credential Exposure | Wireshark + Isolated Lab | ✅ PREPARED | ⏳ READY FOR KALI |
-| **09** | Controlled Exploitation and Post-Exploitation Analysis | Metasploitable VM | ✅ PREPARED | ⏳ READY FOR KALI |
-| **10** | Integrated Ethical Hacking Assessment | Integrated Target Network | ⛔ DEFERRED | ⛔ PENDING |
-
-> [!NOTE]
-> **Status Lifecycle:** `NOT STARTED` ➔ `PREPARED` ➔ `READY FOR KALI` ➔ `IN PROGRESS` ➔ `PRACTICAL COMPLETE` ➔ `VERIFIED` ➔ `COMPLETE`.
-> 
-> *Documentation preparation alone does NOT constitute experiment completion. Experiments 01--06, 08, 09 will transition to `COMPLETE` only after practical execution in Kali Linux with verified screenshot and log evidence.*
-
----
-
-## 🚀 Quick Start Guide
-
-### 1. Prerequisites (Host Machine)
-- Virtualization Hypervisor: **VirtualBox 7.x** or **VMware Workstation 17+**
-- Virtual Machines:
-  - **Kali Linux 2024.x** (Attacker VM - 4GB RAM, 20GB Disk)
-  - **Metasploitable 2** (Target VM - 512MB RAM, 8GB Disk)
-  - **OWASP Broken Web Applications (BWA)** or **DVWA container** (Target VM - 1GB RAM)
-
-### 2. Workflow: Cloning into Kali Linux
-Once VirtualBox/VMware networking is configured according to [LAB_SETUP.md](file:///d:/Ethical%20Hacking%20Experiments/LAB_SETUP.md):
-
-```bash
-# 1. Boot Kali Linux VM and open terminal
-# 2. Clone the repository (replace placeholder with real URL)
-git clone <YOUR_GITHUB_REPOSITORY_URL> Ethical-Hacking-Experiments
-
-# 3. Enter the project directory
-cd Ethical-Hacking-Experiments
-
-# 4. Verify repository layout and status
-cat EXPERIMENT_STATUS.md
-```
-
-### 3. Executing an Experiment (e.g., Experiment 01)
-1. Navigate to the experiment directory:
-   ```bash
-   cd experiment-01-network-reconnaissance
-   ```
-2. Read the procedure and manual execution checkpoint:
-   ```bash
-   cat PROCEDURE.md
-   ```
-3. Execute commands strictly replacing `<TARGET_LAB_IP>` with your target VM's isolated IP address (e.g., `192.168.56.102`).
-4. Save terminal logs to `outputs/` and screenshots to `screenshots/`.
-5. Fill out the report in `reports/` following `templates/experiment-report-template.md`.
-
----
-
-## 🔬 Local Test Application (Experiment 07)
-
-Experiment 07 features a standalone educational Python application demonstrating secure authentication engineering (Argon2id/PBKDF2 hashing, CSPRNG salting, password entropy policies, failed login throttling) vs insecure design patterns.
-
-### Running Local Auth App & Tests on Host/Kali:
-```bash
-# Navigate to Experiment 07 directory
-cd experiment-07-password-authentication/scripts
-
-# Run automated security test suite
-python -m unittest discover -s tests -p "test_*.py" -v
-
-# Run the interactive CLI security test application
-python app.py
-```
-
----
-
-## 📜 Repository Standards & Policies
-
-- **Command Syntax:** All command templates throughout this repository strictly utilize `<TARGET_LAB_IP>` or `<LAB_TARGET>` as host placeholders. Real IP addresses are identified during live VM execution (Phase 8).
-- **Screenshot Policy:** Screenshot checklists (`screenshots/README.md`) specify exact capture requirements. Screenshots must be captured during live laboratory execution; non-genuine or synthetic images are prohibited.
-- **Viva Preparation:** Every experiment directory contains a `VIVA.md` file featuring 10+ core theoretical and practical questions with comprehensive technical answers for university oral exams.
-
----
-
-## 🏫 Institutional Info
-
-- **University:** Malla Reddy University (MRU), Hyderabad, India
-- **Course Syllabus Code:** MR23-1CS0432
-- **Degree Program:** B.Tech Computer Science & Engineering (Cybersecurity)
-- **Maintainer:** Ethical Hacking Laboratory Engineering Team
-
----
-*For environment installation and virtualization architecture, refer to [LAB_SETUP.md](file:///d:/Ethical%20Hacking%20Experiments/LAB_SETUP.md).*
+- **Course Code:** MR23-1CS0432
+- **Course Name:** Ethical Hacking Laboratory
+- **Institution:** Malla Reddy University
+- **Department:** Computer Science and Engineering (Cyber Security)
