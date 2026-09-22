@@ -1,0 +1,3 @@
+# Experiment 07 Dependencies
+# Note: The application uses Python Standard Library (hashlib, secrets, time, unittest).
+# No external pip packages required, ensuring zero-dependency execution.

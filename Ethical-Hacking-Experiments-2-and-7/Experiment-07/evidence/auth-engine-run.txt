@@ -1,0 +1,32 @@
+$ python scripts/app.py
+=================================================================
+  EXPERIMENT 07: PASSWORD SECURITY & AUTHENTICATION ENGINE  
+  Course: MR23-1CS0432 - Ethical Hacking Laboratory (MRU)   
+=================================================================
+
+[1] Password Hashing & Salt Demonstration
+Raw Input Password: LaboratoryPassword2026!
+Password Entropy:   150.76 bits
+
+[INSECURE] Unsalted MD5 Hash: 096b1f381d46137f604347537db76776
+
+[SECURE] PBKDF2 (Run 1):
+   Salt 1 (Hex):  fcd7d5c65d34c46348a007bdae2a3278
+   Hash 1 (Hex):  3529fa3622127a42371c35293515abfb1f8a9e26ba25df453549a5b7084b614d
+
+[SECURE] PBKDF2 (Run 2 - Same Password, New CSPRNG Salt):
+   Salt 2 (Hex):  aaa275edf37f18f86af01e845afb6fec
+   Hash 2 (Hex):  29274da953a6e5ef83bd4ed9626c24c61f1c5768d647cd70aa5df5c6ebc90c0b
+
+[2] Registering Synthetic User 'student_admin'...
+Registration Status: SUCCESS
+
+[3] Simulating Failed Login Attacks & Account Lockout Defense:
+Attempting '123456' -> [DENIED]: Invalid credentials. Attempts remaining before lockout: 2
+Attempting 'admin123' -> [DENIED]: Invalid credentials. Attempts remaining before lockout: 1
+Attempting 'wrong_pass' -> [DENIED]: Account locked! Exceeded max failed attempts (3).
+Attempting 'LaboratoryPassword2026!' -> [DENIED]: Account locked due to multiple failed attempts. Try again in 9 seconds.
+
+=================================================================
+  LOCAL PRACTICAL EXECUTION TEST COMPLETED SUCCESSFULLY  
+=================================================================
